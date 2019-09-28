@@ -1,21 +1,4 @@
-
-
-
-def gcd(a,b):
-    """ Compute the gcd of a and b using the Euclidean algorithm
-    
-    Arguments:
-        a {integer} -- first integer 
-        b {integer} -- second integer
-    """
-
-    if b>a:
-        c = a
-        a = b
-        b = c
-    
-    return a if b == 0 else gcd(b , a%b)
-
+from myUtils import *
 
 def fact_p_minus_1(N , a , limit):
     val = a
