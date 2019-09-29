@@ -1,22 +1,25 @@
 from myUtils import *
+import math
 
-def fact_rho(N , f, iter):
-    x = 2
-    y = 2
+
+def fact_rho(N , f, init):
+    x = init
+    y = init
     d = 1
-    i = 0
-    while d==1 and i < iter:
-        x = f(x)%N
-        y = f(f(y))%N
-        d = gcd(abs(x-y) , N)%N
-        i+=1
+    while d==1:
+        x = f(x)
+        y = f(f(y))
+        #print("Diff : ",abs(x-y))
+        d = math.gcd(abs(x-y) , N)
     if d==N:
-        return 0,0   
+        return 0 
     
-    return d,int(N/d)
+    return d
 
 
 
-N = 8051
-p,q = fact_rho(N , (lambda x:x**2+1) , 10)
-print(N , " = " , p , "*" , q)
+N = 0x89CC9B17E4F79CAC98C2C7B4212A3697A70354610531B9B84FCA23DB45A5810A84D06E13B2A6AADF196A0560F24F11D7C6BB64DD7B0CABD1B057D7416EFED54EBDAE90371A17D475C18AB2D19AFCABF086CE8939243BFD0C60663A9516181A5FC0E2118486D7AD663E3DF29AE14A00C1681349A84DEC47A24F4A3F672F2D0B0067D4ADDDAFE2B6B58801E8C1A493D56C89189455C59584C95DFE3BC09EEA2BDB2CE15DC70D0C77F13664BF7C5F3A19B59D8F10CBD92AAFDBEBA95FD89C67AB99DC2AFC973755393AA5ADABAC9AC19D84DD56C8A05D84656B5A2FC6F66F0E6FD40956E3EF3B4FF2C23E1963BB5D3F087B8B4948AB6795F7E654A21E8AC7955E6F
+init=2
+#p = fact_rho(N , (lambda x:int(x**2-1)%N) , init)
+p=152004274830911
+print("p : ",p, " q : ", N//p)
