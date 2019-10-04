@@ -1,19 +1,20 @@
-from myUtils import *
+import math
 
-def fact_p_minus_1(N , a , limit):
+def fact_p_minus_1(N , a):
     val = a
-    for i in range(1 , limit):
+    i=1
+    d=1
+    while d==1:
         val = (val**i)%N
         
-        d = gcd(val-1,N)
+        d = math.gcd(val-1,N)
         if d!=1 and d!=N:
-            return d,int(N/d)
+            return d
+        i+=1
 
-    return 0,0
+    return 0
     
 
-N = [299,1403,2993]
-
-for n in N:
-    p,q = fact_p_minus_1(n , 2 , 10)    
-    print(n , " = " , p , "*" , q)
+N = 0x9431A636C300F2CD0868C4FFBB101163CD15188980761C2FAD6E534DB1DA13A7FB30E22F39D41277E6A5AC1C4157459E1E5001B4F807741C71B6AB8E64346A4B5454928B20D5B635B88EBEDD9AB1C791510B9B479B71C798431A07A04BAB01097EE71624F6AAEF82EE4D659822878F84232C96473D684012114F349A00D0DBCCB4197E6FC98879ED8670A3CD2AA696E6AAAC777C8B00AE48FC16BA4BFBD81FD4DA422047B44F7C7C517B39AEFE19BC80CECAF3160D827455495910C7C325DD34FA98D6B6744189A78C9DBC5F614677AA031DFE66A7A047C69CA5C0946379A440088528CA39115C9F1F3F3FE278ED9CFEFD559EB2C157B7860F0A779D1D9AF43B
+p = fact_p_minus_1(N , 2)    
+print(N , " = " , p , "*" , N//p)
